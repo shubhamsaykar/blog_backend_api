@@ -41,30 +41,35 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public CategoryDto getCategoryById(Integer categoryId) {
-		Category category = this.categoryRepo.findById(categoryId).orElseThrow( () -> new ResourceNotFoundException("Category","Id",categoryId));
+		Category category = this.categoryRepo.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category", "Id", categoryId));
 		return this.categoryToDto(category);
 	}
 
 	@Override
 	public List<CategoryDto> getAllCategories() {
 		List<Category> categories = this.categoryRepo.findAll();
-		List<CategoryDto> categoryDtos= categories.stream().map( category ->this.categoryToDto(category)).collect(Collectors.toList());
+		List<CategoryDto> categoryDtos = categories.stream().map(category -> this.categoryToDto(category))
+				.collect(Collectors.toList());
 		return categoryDtos;
 	}
 
 	@Override
 	public CategoryDto updateSingleCategory(CategoryDto categoryDto, Integer categoryId) {
-		Category category = this.categoryRepo.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("Category","Id",categoryId));
+		Category category = this.categoryRepo.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category", "Id", categoryId));
+
 		category.setCategoryTitle(categoryDto.getCategoryTitle());
 		category.setCategoryDescription(categoryDto.getCategoryDescription());
-		Category Updatecategory=this.categoryRepo.save(category);
-		CategoryDto categoryDto2 = this.categoryToDto(Updatecategory);
-		return categoryDto2;
+		Category Updatecategory = this.categoryRepo.save(category);
+		CategoryDto updatedCategory = this.categoryToDto(Updatecategory);
+		return updatedCategory;
 	}
 
 	@Override
 	public void deleteCategoryById(Integer categoryId) {
-		Category category = this.categoryRepo.findById(categoryId).orElseThrow( ()-> new ResourceNotFoundException("Category","Id",categoryId));
+		Category category = this.categoryRepo.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category", "Id", categoryId));
 		this.categoryRepo.delete(category);
 	}
 
