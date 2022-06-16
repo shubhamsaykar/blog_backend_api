@@ -15,6 +15,7 @@ public class CategoryDto {
 	private int categoryId;
 	
 	@NotEmpty(message = "Title Cannot be empty!!")
+	@Size(min=4,message="Title is to short!!")
 	private String categoryTitle;
 	
 	@Size(min = 20, message = "Discription is too short.")
