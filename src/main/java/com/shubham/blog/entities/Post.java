@@ -14,38 +14,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class Post {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "post_Id")
 	private Integer postId;
-	
 
 	private String title;
-	
+
 	@Column(length = 10000)
 	private String content;
-	
+
 	private String imageName;
-	
+
 	private Date postedDate;
-	
+
+//	private Date lastModifieddate;
+
 	@ManyToOne
 	private Category category;
-	
+
 	@ManyToOne
 	private User user;
-	
-	
-	
-	
 
 }

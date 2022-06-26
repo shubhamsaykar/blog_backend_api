@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.shubham.blog.payloads.PostDto;
+import com.shubham.blog.payloads.PostResponse;
 
 public interface PostService {
 	
@@ -27,7 +28,7 @@ public interface PostService {
 	
 //	to get all post
 	
-	List<PostDto> getAllPosts();
+	PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 	
 	
 //	to get all post by category
