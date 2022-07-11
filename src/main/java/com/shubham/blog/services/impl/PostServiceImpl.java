@@ -62,13 +62,9 @@ public class PostServiceImpl implements PostService {
 	public PostDto updatePost(PostDto postDto, Integer postId) {
 		Post post = this.postRepo.findById(postId)
 				.orElseThrow(() -> new ResourceNotFoundException("Post", "PostId", postId));
-//		Date date = new Date();
-//		Long nowTime = date.getTime();
 		post.setTitle(postDto.getTitle());
 		post.setContent(postDto.getContent());
 		post.setImageName(postDto.getImageName());
-//		post.setPostedDate(postDto.getPostedDate());
-//		post.setLastModifieddate(nowTime.toString());
 		Post updatedPost = this.postRepo.save(post);
 		return this.modelMapper.map(updatedPost, PostDto.class);
 	}
@@ -93,7 +89,7 @@ public class PostServiceImpl implements PostService {
 //		int pageSize = 5;
 //		int pageNumber = 1;
 
-//		ifelse condition replace with ternary Operator
+//		if else condition replace with ternary Operator
 		Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
 		// if(sortDir.equalsIgnoreCase("asc")) {

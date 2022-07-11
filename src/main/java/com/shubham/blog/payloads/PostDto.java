@@ -1,8 +1,11 @@
 package com.shubham.blog.payloads;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.shubham.blog.entities.Comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +28,8 @@ public class PostDto {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private Date postedDate;
+	
+	
 
 //	@LastModifiedDate
 //	@Temporal(TemporalType.TIMESTAMP)
@@ -34,5 +39,7 @@ public class PostDto {
 	private CategoryDto category;
 
 	private UserDto user;
+	
+	private Set<CommentsDto> comments = new HashSet<>();
 
 }
